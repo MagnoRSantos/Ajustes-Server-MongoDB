@@ -161,7 +161,7 @@ sudo swapon /swapfile
 Na sequência, faça a alteração para o uso de *Swap* ficar permanente, editando o seguinte arquivo:
 
 ```
-nano /etc/fstab
+sudo nano /etc/fstab
 ```
 
 E adicione a seguinte linha no final do arquivo:
@@ -299,4 +299,4 @@ Adicione o seguinte conteúdo ao final do arquivo:
 
 ## Considerações Finais
 
-Após todos os passos descritos, é necessário reiniciar a instância para que todas as alterações tenham efeito. Lembrando também que as especificações físicas da máquina também interferem muito no desempenho do MongoDB, como: IOPS do disco, quantidade de memória RAM, quantidade de *cores* do processador, latência da rede (principalmente para aplicações de *Sharded Cluster* e *Replica Set*), entre outros.
+Após todos os passos descritos, é necessário reiniciar a instância para que todas as alterações tenham efeito. Lembrando também que as especificações de hardware da máquina interferem muito no desempenho do MongoDB, como: IOPS do disco, quantidade de memória RAM, quantidade de *cores* do processador, latência da rede (principalmente para aplicações de *Sharded Cluster* e *Replica Set*), entre outros.
