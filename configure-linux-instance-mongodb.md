@@ -164,16 +164,35 @@ Na sequência, faça a alteração para o uso de *Swap* ficar permanente, editan
 sudo nano /etc/fstab
 ```
 
-E adicione a seguinte linha no final do arquivo:
+Adicione a seguinte linha no final do arquivo:
 
 ```
 /swapfile swap swap defaults 0 0
 ```
 
-Para verificar se o *Swap* está funcionando, use o seguinte comando:
+Por último, altere o Swappiness, editando o arquivo `sysctl.conf`
+
+```
+sudo nano /etc/sysctl.conf
+```
+
+Coloque a seguinte linha no final do arquivo:
+
+```
+vm.swappiness = 1
+```
+
+E execute o seguinte comando para aplicar as alterações:
+
+```
+sudo sysctl -p
+```
+
+Para verificar se o *Swap* está funcionando e o Swappiness está correto, use os seguintes comandos:
 
 ```
 sudo swapon --show
+sudo cat /proc/sys/vm/swappiness
 ```
 
 ## Configurando uma partição XFS
@@ -267,15 +286,16 @@ sudo nano /etc/fstab
 
 Localize no arquivo o seu sistema de arquivos, e logo após a palavra `default`, adicione `noatime`, conforme abaixo:
 
-```
-UUID=UUID-ANOTADO /mnt/mongodb xfs defaults,noatime 1 1
-```
+<pre>
+UUID=UUID-ANOTADO /mnt/mongodb xfs defaults,<strong>noatime</strong> 1 1
+</pre>
 
 Caso você não utilize um disco com sistema de arquivo à parte, execute o mesmo procedimento, mas no sistema de arquivos padrão:
 
-```
-LABEL=cloudimg-rootfs / ext4 defaults,noatime,discard 0 0
-```
+<pre>
+LABEL=cloudimg-rootfs / ext4 defaults,<strong>noatime</strong>,discard 0 0
+</pre>
+
 
 ## Número de Blocos do *Readahead*
 
